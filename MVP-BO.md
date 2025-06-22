@@ -12,6 +12,12 @@ This document defines the core business rules and structural model for the found
 ### Ingredient
 > A **CulinaryItem becomes an Ingredient** only when it is included in a Recipe with a **specific amount** and **modification to its natural form factor** if needed for the Recipe.
 
+### RawIngredient
+> A **RawIngredient** is a `CulinaryItem` that cannot be broken down into other `CulinaryItems` within the system. It is considered atomic and is not the output of any defined `Recipe`.
+
+### Ingredient
+> A **CulinaryItem becomes an Ingredient** only when it is included in a Recipe with a **specific amount** and **modification to its natural form factor** if needed for the Recipe.
+
 ### FormModifier
 > A **FormModifier** is a change applied to a `CulinaryItem` that **does not alter its modular identity level**, but instead adjusts its **physical form** for use in a Recipe. It excludes any modification that involves **heat, time-based transformation, or chemical change**.
 
@@ -121,4 +127,69 @@ classDiagram
     IIngredient --> "0..1" FormModifier : FormModifier
 
     IMeasuredQuantity --> "1" UnitOfMeasure : Unit
+```
+
+---
+
+## 🗂️ Database UML
+
+```mermaid
+classDiagram
+    class CulinaryItem {
+        +ID : UUID
+        +Name : TEXT
+        +IsRawIngredient : BOOLEAN
+    }
+
+    class Recipe {
+        +ID : UUID
+        +Result_CulinaryItemID : UUID
+    }
+
+    class Ingredient {
+        +ID : UUID
+        +CulinaryItemID : UUID
+        +Amount : DECIMAL
+        +Unit : TEXT
+        +IsQuantitative : BOOLEAN
+        +FormModifier : TEXT
+    }
+
+    class InstructionStep {
+        +ID : UUID
+        +Text : TEXT
+    }
+
+    class Recipe_Ingredient {
+        +ID : UUID
+        +RecipeID : UUID
+        +IngredientID : UUID
+    }
+
+    class Recipe_InstructionStep {
+        +ID : UUID
+        +RecipeID : UUID
+        +InstructionStepID : UUID
+        +StepOrder : INTEGER
+    }
+
+    class UnitOfMeasure {
+        +Key : TEXT
+        +Name : TEXT
+    }
+
+    class FormModifier {
+        +Key : TEXT
+        +Name : TEXT
+    }
+
+    %% Relationships
+    Recipe --> CulinaryItem : Result_CulinaryItemID
+    Ingredient --> CulinaryItem : CulinaryItemID
+    Recipe_Ingredient --> Recipe : RecipeID
+    Recipe_Ingredient --> Ingredient : IngredientID
+    Recipe_InstructionStep --> Recipe : RecipeID
+    Recipe_InstructionStep --> InstructionStep : InstructionStepID
+    Ingredient --> UnitOfMeasure : UnitOfMeasure
+    Ingredient --> FormModifier : FormModifier
 ```
