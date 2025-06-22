@@ -1,12 +1,13 @@
 ```mermaid
 classDiagram
-    %% Base Interface First (for clean inheritance lines)
+    %% Base Interface
     class ICulinaryItem {
         +IsRawIngredient : bool
         +IsIngredient : bool
         +IsRecipe : bool
     }
 
+    %% Recipe-Centered Types
     class IRecipe {
         +Ingredients : IEnumerable~IIngredient~
         +PreparedCulinaryItem : ICulinaryItem
@@ -27,13 +28,26 @@ classDiagram
 
     class IInstructionStep
 
-    %% Enums
+    %% Enums with examples
     class UnitOfMeasure {
         <<enumeration>>
+        - Gram
+        - Milliliter
+        - Teaspoon
+        - Tablespoon
+        - Cup
+        - Ounce
+        - ToTaste
     }
 
     class FormModifier {
         <<enumeration>>
+        - Chopped
+        - Sliced
+        - Diced
+        - Minced
+        - Crushed
+        - Whole
     }
 
     %% Inheritance
