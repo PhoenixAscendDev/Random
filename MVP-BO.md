@@ -26,6 +26,31 @@ This document defines the core business rules and structural model for the found
 
 ---
 
+## 🧰 MVP User Functionality
+
+### ✅ Users can:
+
+- **Create Recipes**
+  - Define a recipe name (CulinaryItem)
+  - Select one or more existing CulinaryItems as Ingredients
+  - Assign a MeasuredQuantity and optional FormModifier to each Ingredient
+  - Add a sequence of plain-text InstructionSteps
+
+- **View Recipes**
+  - See the Ingredients (with amounts and forms)
+  - See the InstructionSteps in defined order
+  - View what the recipe produces (CulinaryItem)
+
+- **Browse CulinaryItems**
+  - Discover items by name
+  - See whether an item is used as an Ingredient, produced by a Recipe, or a RawIngredient
+
+- **Reuse Items**
+  - Reference existing CulinaryItems across multiple recipes
+  - Build recipes using outputs of other recipes as inputs
+
+---
+
 ## 🧩 UML Diagram
 
 ```mermaid
