@@ -48,8 +48,61 @@ classDiagram
         +FoodGroups : IEnumerable~IFoodGroup~
     }
 
+    class ISubstitutionRule {
+        +ID : UUID
+        +Name : TEXT
+        +Description : TEXT
+    }
 
+    class IIngredientSubstitution {
+        +TargetCulinaryItem : ICulinaryItem
+        +SubstitutionRule : ISubstitutionRule
+        +FoodGroupReason : TEXT
+        +ValidSubstitutes : IEnumerable~ICulinaryItem~
+    }
+
+    class DietaryIngredientSubstitution {
+        +IDiet : IDiet
+    }
+
+    DietaryIngredientSubstitution --|> IIngredientSubstitution
 
     IDiet --> "1..*" IFoodGroup : excludes
     ICulinaryItem --> "0..*" IFoodGroup : associated with
     IFoodGroup --> "0..1" IFoodGroup : parent
+    IIngredientSubstitution --> ICulinaryItem : evaluates
+    IIngredientSubstitution --> ISubstitutionRule : uses
+    IIngredientSubstitution --> "0..*" ICulinaryItem : suggests
+
+```
+
+### 🧪 Example Scenario
+
+#### Use Case: Vegan Diet Substitution for "Whole Milk"
+
+**Context**  
+- The user follows a **Vegan** diet.  
+- A recipe includes `Whole Milk` as an `ICulinaryItem`.  
+- The system must find valid substitutes based on the user's diet.
+
+---
+
+**Model Mapping**
+
+```plaintext
+ICulinaryItem: "Whole Milk"
+    - FoodGroups: ["Dairy", "AnimalProduct"]
+
+IDiet: "Vegan"
+    - FoodGroupRestrictions: ["AnimalProduct", "Dairy"]
+
+ISubstitutionRule: "Dietary Substitution"
+    - Name: "Dietary"
+    - Description: "Substitute ingredients that conflict with user diet"
+
+DietaryIngredientSubstitution
+    - TargetCulinaryItem: "Whole Milk"
+    - SubstitutionRule: "Dietary Substitution"
+    - FoodGroupReason: "Dairy"
+    - ValidSubstitutes: ["Oat Milk", "Almond Milk", "Soy Milk"]
+    - IDiet: "Vegan"
