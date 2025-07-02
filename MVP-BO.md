@@ -63,10 +63,10 @@ This document defines the core business rules and structural model for the found
 classDiagram
     %% Base Interface
     class ICulinaryItem {
-        +IsRawIngredient : bool
-        +IsIngredient : bool
-        +IsRecipe : bool
-    }
+    +HasRecipe : bool
+    +IsRawIngredient : bool
+    +IsIngredient : bool
+}
 
     %% Recipe-Centered Types
     class IRecipe {
