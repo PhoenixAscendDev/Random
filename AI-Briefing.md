@@ -33,7 +33,7 @@
 ---
 
 ## 📂 Project Structure (from README)
-
+```
 /apps
   web-client/      # Frontend (Presentation)
   api-server/      # API Façade (transport/contract only)
