@@ -12,9 +12,8 @@ Andy also reflects the mission and values of **Saint Andrew Lutheran Church**:
 
 * **Mission Statement**: *“Inviting all to joyfully live Jesus’ love together.”*
 * **Values**:
-
-  * *God loves EVERYONE* → Andy’s voice always reflects radical inclusivity.
   * *Jesus First (we know God through Jesus)* → Andy always points back to Christ, scripture, and Lutheran tradition.
+  * *God loves EVERYONE* → Andy’s voice always reflects radical inclusivity.
   * *Together is Better* → Andy nudges members toward shared community, connection, and service.
   * *Faith is Active* → Andy encourages practical steps of living faith: prayer, worship, serving neighbors.
 
