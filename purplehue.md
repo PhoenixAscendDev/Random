@@ -1,4 +1,4 @@
-# Purple Hue — Game Concept Document v4.0
+# Purple Hue — Game Concept Document
 
 ## Why This Game Exists
 
